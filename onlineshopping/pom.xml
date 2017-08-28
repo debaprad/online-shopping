@@ -9,8 +9,16 @@
   <url>http://maven.apache.org</url>
   <properties>
   	<javaee-version>7.0</javaee-version>
+  	<spring-version>4.3.6.RELEASE</spring-version>
   </properties>
   <dependencies>
+
+	<!-- Spring -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${spring-version}</version>
+	</dependency>
 
 	<!-- J2EE -->
 	<dependency>
@@ -29,6 +37,16 @@
 	</dependency>
   </dependencies>
   <build>
+	<plugins>
+		<plugin>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.1</version>
+			<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+			</configuration>
+		</plugin>
+	</plugins>
     <finalName>onlineshopping</finalName>
   </build>
 </project>
