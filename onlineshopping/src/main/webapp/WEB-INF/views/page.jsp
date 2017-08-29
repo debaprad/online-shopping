@@ -45,8 +45,11 @@
 			<c:if test="${AboutUsPage}">
 				<%@include file="./aboutus.jsp"%>
 			</c:if>
-			<c:if test="${contactUsPage}">
-				<%@include file="./contactus.jsp"%>
+			<c:if test="${AllProducts}">
+				<%@include file="./listProducts.jsp"%>
+			</c:if>
+			<c:if test="${CategoryProducts}">
+				<%@include file="./listProducts.jsp"%>
 			</c:if>
 		</div>
 
