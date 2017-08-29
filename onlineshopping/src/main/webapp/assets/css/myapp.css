@@ -6,6 +6,10 @@
 
 body {
   padding-top: 54px;
+  hight:100%;
+}
+html {
+  height: 100%;
 }
 
 @media (min-width: 992px) {
@@ -13,3 +17,5 @@ body {
     padding-top: 56px;
   }
 }
+
+

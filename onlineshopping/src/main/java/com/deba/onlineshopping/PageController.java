@@ -12,9 +12,26 @@ public class PageController {
 	@RequestMapping(value ={"/","/home","/index"})
 	public ModelAndView index()
 	{
-		System.out.println("hello controller");
 		ModelAndView mv=new ModelAndView("page");
-		mv.addObject("greeting","Welcome to OnlineShopping !");
+		mv.addObject("title","home");
+		mv.addObject("HomePage",true);
+		return mv;
+	}
+	
+	@RequestMapping("/aboutus")
+	public ModelAndView aboutUs()
+	{
+		ModelAndView mv=new ModelAndView("page");
+		mv.addObject("title","About Us");
+		mv.addObject("AboutUsPage",true);
+		return mv;
+	}
+	@RequestMapping("/contactus")
+	public ModelAndView contactUs()
+	{
+		ModelAndView mv=new ModelAndView("page");
+		mv.addObject("title","contact Us");
+		mv.addObject("contactUsPage",true);
 		return mv;
 	}
 	
