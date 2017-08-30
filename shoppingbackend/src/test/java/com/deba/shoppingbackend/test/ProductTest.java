@@ -1,28 +1,25 @@
 package com.deba.shoppingbackend.test;
 
-
 import static org.junit.Assert.assertEquals;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-
 import com.deba.shoppingbackend.DTO.Category;
 import com.deba.shoppingbackend.DTO.Product;
 import com.deba.shoppingbackend.dao.CategoryDAO;
+import com.deba.shoppingbackend.dao.ProductDAO;
 
-public class CategoryTest {
+public class ProductTest {
 
-	private static AnnotationConfigApplicationContext applicationContext;
+private static AnnotationConfigApplicationContext applicationContext;
 	
-	private static CategoryDAO categoryDAO;
+	private static ProductDAO productDAO;
 	
 	private Category category;
+	private Product product;
 	
 	@BeforeClass
 	public static void init()
@@ -32,7 +29,7 @@ public class CategoryTest {
 		applicationContext.scan("com.deba.shoppingbackend.daoimpl");
 		applicationContext.refresh();
 		System.out.println(applicationContext);
-		categoryDAO =(CategoryDAO)applicationContext.getBean("categoryDAO");
+		productDAO =(ProductDAO)applicationContext.getBean("productDAO");
 		
 	}
 	
@@ -45,19 +42,16 @@ public class CategoryTest {
 		category.setDescription("Laptop Description");
 		category.setImageUrl("lap.png");
 		category.setName("Laptop");
-		/*Product product1=new Product();
+		Product product1=new Product();
 		product1.setActive(true);
 		product1.setBrand("HP");
 		product1.setCategory(category);
 		product1.setDescription("My 14 series HP Laptop");
 		product1.setName("14 Series Laptop");
-		Set<Product> products=new HashSet<>();
-		products.add(product1);
-		category.setProducts(products);*/
-		assertEquals(true, categoryDAO.addCategory(category));
+		assertEquals(true, productDAO.addProduct(product1));
 	}
 	
-	@Test
+	/*@Test
 	public void testGetCategory()
 	{
 		assertEquals("Televison", categoryDAO.getCategory(1).getName());
@@ -83,5 +77,5 @@ public class CategoryTest {
 	public void testListCategories()
 	{
 		assertEquals(3, categoryDAO.list().size());
-	}
+	}*/
 }

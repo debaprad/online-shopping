@@ -51,7 +51,7 @@ public class HibernateConfiguration {
 		builder.setProperty("hibernate.dialect", DIALECT);
 		builder.setProperty("hibernate.show_sql", "true");
 		builder.setProperty("hibernate.format_sql", "true");
-		builder.setProperty("hibernate.hbm2ddl.auto", "update");
+		builder.setProperty("hibernate.hbm2ddl.auto", "create");
 		builder.scanPackages("com.deba.shoppingbackend.DTO");
 		SessionFactory factory=null;
 		try {
