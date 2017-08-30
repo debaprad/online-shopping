@@ -7,5 +7,8 @@ import com.deba.shoppingbackend.DTO.Category;
 public interface CategoryDAO {
 
 	List<Category> list();
-	Category get(int id);
+	Category getCategory(int id);
+	boolean addCategory(Category category);
+	boolean update(Category category);
+	boolean delete(Category category);
 }

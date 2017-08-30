@@ -39,7 +39,7 @@ public class PageController {
 	@RequestMapping("/show/category/{categoryId}/product")
 	public ModelAndView prodcutsByCategoryId(@PathVariable("categoryId") int id)
 	{
-		Category category=categoryDAO.get(id);
+		Category category=categoryDAO.getCategory(id);
 		System.out.println("category : "+category);
 		ModelAndView mv=new ModelAndView("page");
 		mv.addObject("title",category.getName());
