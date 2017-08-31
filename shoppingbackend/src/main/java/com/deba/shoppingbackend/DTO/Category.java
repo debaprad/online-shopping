@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,13 +22,17 @@ public class Category {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	//@Column(name="CATEGORY_ID")
+	@Column(name="CATEGORY_ID")
 	private int id;
 	private String name;
 	private String description;
 	private String imageUrl;
 	private boolean active=true;
-	/*private Set<Product> products;*/
+	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)/*
+	@JoinTable(name = "Category_Product", 
+				joinColumns = { @JoinColumn(name = "CATEGORY_ID") },
+				inverseJoinColumns = { @JoinColumn(name = "PRODUCT_ID") })*/
+	private Set<Product> products;
 	public int getId() {
 		return id;
 	}
@@ -58,10 +63,12 @@ public class Category {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
-				+ ", active=" + active + "]";
+				+ ", active=" + active + ", products=" + products + "]";
 	}
 	public Category(int id, String name, String description, String imageUrl) {
 		super();
@@ -71,17 +78,14 @@ public class Category {
 		this.imageUrl = imageUrl;
 	}
 	
-	/*@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "Category_Product", 
-				joinColumns = { @JoinColumn(name = "CATEGORY_ID") },
-				inverseJoinColumns = { @JoinColumn(name = "PRODUCT_ID") })
+	
 	public Set<Product> getProducts() {
 		return products;
 	}
 	
 	public void setProducts(Set<Product> products) {
 		this.products = products;
-	}*/
+	}
 	
 	
 }

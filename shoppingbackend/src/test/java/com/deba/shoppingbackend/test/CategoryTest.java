@@ -11,7 +11,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-
 import com.deba.shoppingbackend.DTO.Category;
 import com.deba.shoppingbackend.DTO.Product;
 import com.deba.shoppingbackend.dao.CategoryDAO;
@@ -36,33 +35,34 @@ public class CategoryTest {
 		
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void testAddCategory()
 	{
 		category=new Category();
 		category.setActive(true);
-		category.setDescription("Laptop Description");
+		category.setDescription("Mobile Description");
 		category.setImageUrl("lap.png");
-		category.setName("Laptop");
-		/*Product product1=new Product();
+		category.setName("Mobile");
+		Product product1=new Product();
 		product1.setActive(true);
-		product1.setBrand("HP");
-		product1.setCategory(category);
-		product1.setDescription("My 14 series HP Laptop");
-		product1.setName("14 Series Laptop");
+		product1.setBrand("Samsung");
+		//product1.setCategory(category);
+		product1.setDescription("Samsung on8 dual cam mobile");
+		product1.setName("Samsung on8");
 		Set<Product> products=new HashSet<>();
 		products.add(product1);
-		category.setProducts(products);*/
+		//category.setProducts(products);
 		assertEquals(true, categoryDAO.addCategory(category));
 	}
-	
+	@Ignore
 	@Test
 	public void testGetCategory()
 	{
-		assertEquals("Televison", categoryDAO.getCategory(1).getName());
+
+		assertEquals("14 Series Laptop", categoryDAO.getCategory(1).getProducts().stream().map(Product::getName).findFirst().get());
 	}
-	
+	@Ignore
 	@Test
 	public void testupdateCategory()
 	{
@@ -78,7 +78,7 @@ public class CategoryTest {
 		Category category=categoryDAO.getCategory(1);
 		assertEquals(true, categoryDAO.delete(category));
 	}
-	
+	@Ignore
 	@Test
 	public void testListCategories()
 	{

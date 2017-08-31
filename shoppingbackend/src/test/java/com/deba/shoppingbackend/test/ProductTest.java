@@ -17,9 +17,8 @@ public class ProductTest {
 private static AnnotationConfigApplicationContext applicationContext;
 	
 	private static ProductDAO productDAO;
+	private static CategoryDAO categoryDAO;
 	
-	private Category category;
-	private Product product;
 	
 	@BeforeClass
 	public static void init()
@@ -30,52 +29,75 @@ private static AnnotationConfigApplicationContext applicationContext;
 		applicationContext.refresh();
 		System.out.println(applicationContext);
 		productDAO =(ProductDAO)applicationContext.getBean("productDAO");
+		categoryDAO= (CategoryDAO)applicationContext.getBean("categoryDAO");
 		
+	}
+	
+	//@Ignore
+	@Test
+	public void testAddProduct()
+	{
+		Category category=categoryDAO.getCategory(2);
+		Product product1=new Product();
+		product1.setActive(true);
+		product1.setBrand("SamSung");
+		product1.setCatg(category);
+		product1.setDescription("Samsung on8 mobile  2gb ram 16gb hdd");
+		product1.setName("Samsung ON8");
+		assertEquals(true, productDAO.addProduct(product1));
 	}
 	
 	@Ignore
 	@Test
-	public void testAddCategory()
-	{
-		category=new Category();
-		category.setActive(true);
-		category.setDescription("Laptop Description");
-		category.setImageUrl("lap.png");
-		category.setName("Laptop");
-		Product product1=new Product();
-		product1.setActive(true);
-		product1.setBrand("HP");
-		product1.setCategory(category);
-		product1.setDescription("My 14 series HP Laptop");
-		product1.setName("14 Series Laptop");
-		assertEquals(true, productDAO.addProduct(product1));
-	}
-	
-	/*@Test
 	public void testGetCategory()
 	{
-		assertEquals("Televison", categoryDAO.getCategory(1).getName());
+		assertEquals("Dell Inspiron", productDAO.getProduct(1).getName());
 	}
 	
+	@Ignore
 	@Test
-	public void testupdateCategory()
+	public void testUpdateProduct()
 	{
-		Category category=categoryDAO.getCategory(1);
-		category.setName("Televison");
-		category.setActive(true);
-		assertEquals(true, categoryDAO.update(category));
+		Product product=productDAO.getProduct(2);
+		product.setUnitPrice(30000);
+		product.setQuantity(7);
+		product.setActive(true);
+		assertEquals(true, productDAO.update(product));
 	}
 	@Ignore
 	@Test
 	public void testDeleteCategory()
 	{
-		Category category=categoryDAO.getCategory(1);
-		assertEquals(true, categoryDAO.delete(category));
+		Product category=productDAO.getProduct(1);
+		assertEquals(true, productDAO.delete(category));
 	}
 	
+	@Ignore
 	@Test
-	public void testListCategories()
+	public void testListProduct()
 	{
-		assertEquals(3, categoryDAO.list().size());
-	}*/
+		assertEquals(2, productDAO.list().size());
+	}
+	@Ignore
+	@Test
+	public void testListActiveProduct()
+	{
+		assertEquals(2, productDAO.listActiveProduct().size());
+	}
+	//@Ignore
+	@Test
+	public void testListActiveProductByCategory()
+	{
+		assertEquals(2, productDAO.listActiveProductByCategory(1).size());
+	}
+	
+	
+	@Test
+	public void testgetLatestActiveProduct()
+	{
+		String s=productDAO.getLatestActiveProduct(1)
+				.stream().findFirst().get().getName();
+		System.out.println(productDAO.getLatestActiveProduct(1));
+		assertEquals(2, productDAO.getLatestActiveProduct(2).size());
+	}
 }

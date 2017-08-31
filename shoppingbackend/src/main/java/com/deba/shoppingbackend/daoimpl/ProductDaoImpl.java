@@ -10,23 +10,54 @@ import org.springframework.transaction.annotation.Transactional;
 import com.deba.shoppingbackend.DTO.Product;
 import com.deba.shoppingbackend.dao.ProductDAO;
 
-//@Repository("productDAO")
-//@Transactional
+@Repository("productDAO")
+@Transactional
 public class ProductDaoImpl implements ProductDAO{
 
-	//@Autowired
+	@Autowired
 	public SessionFactory sesionFactory;
 	
 	
 	@Override
 	public List<Product> list() {
 		return sesionFactory.getCurrentSession()
-				.createQuery("From Product",Product.class)
+				.createQuery("From Product ",Product.class)
+				.getResultList();
+	}
+	
+	@Override
+	public List<Product> listActiveProduct() {
+		return sesionFactory.getCurrentSession()
+				.createQuery("From Product where is_active=:active",Product.class)
+				.setParameter("active", true)
+				.getResultList();
+	}
+	
+	@Override
+	public List<Product> listActiveProductByCategory(int categoryId)
+	{
+		return sesionFactory.getCurrentSession()
+				.createQuery("From Product where is_active=:active AND "
+								+ "catg_CATEGORY_ID=:categoryId",Product.class)
+				.setParameter("active", true)
+				.setParameter("categoryId", categoryId)
+				.getResultList();
+	}
+	
+	@Override
+	public List<Product> getLatestActiveProduct(int count)
+	{
+		return sesionFactory.getCurrentSession()
+				.createQuery("From Product where is_active=:active "
+						+ "order by PRODUCT_ID desc ",Product.class)
+				.setParameter("active", true)
+				.setFirstResult(0)
+				.setMaxResults(count)
 				.getResultList();
 	}
 
 	@Override
-	public Product getCategory(int id) {
+	public Product getProduct(int id) {
 		// TODO Auto-generated method stub
 		return sesionFactory.getCurrentSession()
 				.get(Product.class, Integer.valueOf(id));
@@ -63,7 +94,7 @@ public class ProductDaoImpl implements ProductDAO{
 		product.setActive(false);
 		try {
 			 sesionFactory.getCurrentSession()
-				.save(product);
+				.update(product);
 			 return true;
 		} catch (Exception e) {
 			// TODO: handle exception

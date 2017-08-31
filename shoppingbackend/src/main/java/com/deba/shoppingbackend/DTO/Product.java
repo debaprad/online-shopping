@@ -3,6 +3,7 @@ package com.deba.shoppingbackend.DTO;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,8 @@ public class Product {
 	@Column(name="PRODUCT_ID")
 	private int id;
 	private String code;
-	
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	private Category catg;
 	private String name;
 	private String brand;
 	private String description;
@@ -37,7 +39,6 @@ public class Product {
 	private int supplierId;*/
 	private int purchases;
 	private int views;
-	private Category category;
 	
 	
 
@@ -128,21 +129,15 @@ public class Product {
 		this.views = views;
 	}
 
-	
 
-/*
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(table="Category",name="CATEGORY_ID",nullable=false)*/
-	public Category getCategory() {
-		return category;
+	public Category getCatg() {
+		return catg;
 	}
 
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCatg(Category catg) {
+		this.catg = catg;
 	}
 
-
-	
 	
 }
