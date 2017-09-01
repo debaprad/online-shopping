@@ -8,13 +8,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.deba.shoppingbackend.DTO.Category;
+import com.deba.shoppingbackend.DTO.Product;
 import com.deba.shoppingbackend.dao.CategoryDAO;
+import com.deba.shoppingbackend.dao.ProductDAO;
 
 @Controller
 public class PageController {
 
 	@Autowired
 	public CategoryDAO categoryDAO;
+	@Autowired
+	public ProductDAO productDAO;
 	
 	@RequestMapping(value ={"/","/home","/index"})
 	public ModelAndView index()
@@ -49,6 +53,20 @@ public class PageController {
 		return mv;
 	}
 	
+	@RequestMapping("/show/{id}/product")
+	public ModelAndView showSingleProduct(@PathVariable int id)
+	{
+		Product product=productDAO.getProduct(id);
+		
+		product.setViews(product.getViews()+1);
+		productDAO.update(product);
+		
+		ModelAndView mv=new ModelAndView("page");
+		mv.addObject("title",product.getName());
+		mv.addObject("showProductClicked",true);
+		mv.addObject("product",product);
+		return mv;
+	}
 	
 	@RequestMapping("/aboutus")
 	public ModelAndView aboutUs()

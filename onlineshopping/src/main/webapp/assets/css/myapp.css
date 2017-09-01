@@ -22,7 +22,6 @@ body {
 }
 
 .carousel-control,
-.item {
     border-radius: 4px;
 }
 
@@ -86,7 +85,7 @@ footer {
 .dataTableImg {
 	
 	width:100px;
-	height: 100px;
+	height:100px;
 	
 }
 

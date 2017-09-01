@@ -57,6 +57,11 @@
 			<c:if test="${CategoryProducts}">
 				<%@include file="./listProducts.jsp"%>
 			</c:if>
+			
+			<c:if test="${showProductClicked}">
+				<%@include file="./singleProduct.jsp" %>
+			</c:if>
+			
 		</div>
 
 		<!-- Footer -->

@@ -60,7 +60,7 @@ private static AnnotationConfigApplicationContext applicationContext;
 	{
 		Product product=productDAO.getProduct(3);
 		product.setUnitPrice(14000);
-		product.setQuantity(5);
+		product.setQuantity(0);
 		product.setActive(true);
 		assertEquals(true, productDAO.update(product));
 	}
