@@ -33,7 +33,7 @@ private static AnnotationConfigApplicationContext applicationContext;
 		
 	}
 	
-	//@Ignore
+	@Ignore
 	@Test
 	public void testAddProduct()
 	{
@@ -54,13 +54,13 @@ private static AnnotationConfigApplicationContext applicationContext;
 		assertEquals("Dell Inspiron", productDAO.getProduct(1).getName());
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void testUpdateProduct()
 	{
-		Product product=productDAO.getProduct(2);
-		product.setUnitPrice(30000);
-		product.setQuantity(7);
+		Product product=productDAO.getProduct(3);
+		product.setUnitPrice(14000);
+		product.setQuantity(5);
 		product.setActive(true);
 		assertEquals(true, productDAO.update(product));
 	}
@@ -68,7 +68,7 @@ private static AnnotationConfigApplicationContext applicationContext;
 	@Test
 	public void testDeleteCategory()
 	{
-		Product category=productDAO.getProduct(1);
+		Product category=productDAO.getProduct(4);
 		assertEquals(true, productDAO.delete(category));
 	}
 	

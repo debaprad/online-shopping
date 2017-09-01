@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -24,6 +26,7 @@ public class Product {
 	@Column(name="PRODUCT_ID")
 	private int id;
 	private String code;
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Category catg;
 	private String name;
@@ -31,6 +34,7 @@ public class Product {
 	private String description;
 	private double unitPrice;
 	private int quantity;
+	@JsonIgnore
 	@Column(name = "is_active")
 	private boolean active;
 	/*@Column(name = "category_id")
