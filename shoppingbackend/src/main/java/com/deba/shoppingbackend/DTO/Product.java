@@ -12,6 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,20 +34,28 @@ public class Product {
 	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Category catg;
+
+	@NotBlank(message="product name should not be blank")
 	private String name;
+	@NotBlank(message="brand should not be blank")
 	private String brand;
+	@NotBlank(message="description should not be blank")
 	private String description;
+	@Min(value=1,message="Please Minimum  price")
 	private double unitPrice;
+	@Min(value=1,message="Please Minimum product")
 	private int quantity;
-	@JsonIgnore
+	//@JsonIgnore
 	@Column(name = "is_active")
 	private boolean active;
-	/*@Column(name = "category_id")
-	private int categoryId;
-	@Column(name = "supplier_id")
-	private int supplierId;*/
+	/*@Column(name = "categid")
+	private int categId;*/
+	private int productCatId;
 	private int purchases;
 	private int views;
+	
+	@Transient
+	private MultipartFile file;
 	
 	
 
@@ -104,18 +117,9 @@ public class Product {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	/*public int getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
-	public int getSupplierId() {
-		return supplierId;
-	}
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
-	}*/
+	
+
+
 
 	public int getPurchases() {
 		return purchases;
@@ -141,6 +145,34 @@ public class Product {
 
 	public void setCatg(Category catg) {
 		this.catg = catg;
+	}
+
+
+	public int getProductCatId() {
+		return productCatId;
+	}
+
+
+	public void setProductCatId(int productCatId) {
+		this.productCatId = productCatId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", code=" + code + ", catg=" + catg + ", name=" + name + ", brand=" + brand
+				+ ", description=" + description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active="
+				+ active + ", productCatId=" + productCatId + ", purchases=" + purchases + ", views=" + views + "]";
+	}
+
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 	

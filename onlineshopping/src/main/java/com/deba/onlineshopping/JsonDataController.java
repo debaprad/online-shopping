@@ -20,9 +20,18 @@ public class JsonDataController {
 	
 	@RequestMapping("/All/Product")
 	@ResponseBody
-	public List<Product> getListOfAllProducts()
+	public List<Product> getListOfActiveAllProducts()
 	{
+		//System.out.println("List of products "+productDAO.listActiveProduct());
 		return productDAO.listActiveProduct();
+	}
+	
+	@RequestMapping("/All/Admin/Product")
+	@ResponseBody
+	public List<Product> getListOfAllProducts1()
+	{
+		//System.out.println("List of products "+productDAO.listActiveProduct());
+		return productDAO.list();
 	}
 	
 	@RequestMapping("/category/{id}/Product")

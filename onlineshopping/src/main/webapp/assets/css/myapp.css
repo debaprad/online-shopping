@@ -158,7 +158,10 @@ input:checked + .slider:before {
 .help-block {
 	color: #ff0000;
 }
-
+.success
+{
+	color: #ff0000;
+}
 
 /*Shopping Cart*/
 .table>tbody>tr>td, .table>tfoot>tr>td{

@@ -62,6 +62,10 @@
 				<%@include file="./singleProduct.jsp" %>
 			</c:if>
 			
+			<c:if test="${manageproduct}">
+				<%@include file="./manageProduct.jsp" %>
+			</c:if>
+			
 		</div>
 
 		<!-- Footer -->

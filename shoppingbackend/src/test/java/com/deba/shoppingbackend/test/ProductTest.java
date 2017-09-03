@@ -58,17 +58,17 @@ private static AnnotationConfigApplicationContext applicationContext;
 	@Test
 	public void testUpdateProduct()
 	{
-		Product product=productDAO.getProduct(3);
-		product.setUnitPrice(14000);
-		product.setQuantity(0);
-		product.setActive(true);
+		Product product=productDAO.getProduct(12);
+	/*	product.setUnitPrice(14000);
+		product.setQuantity(0);*/
+		product.setQuantity(6);
 		assertEquals(true, productDAO.update(product));
 	}
 	@Ignore
 	@Test
 	public void testDeleteCategory()
 	{
-		Product category=productDAO.getProduct(4);
+		Product category=productDAO.getProduct(5);
 		assertEquals(true, productDAO.delete(category));
 	}
 	
@@ -84,14 +84,14 @@ private static AnnotationConfigApplicationContext applicationContext;
 	{
 		assertEquals(2, productDAO.listActiveProduct().size());
 	}
-	//@Ignore
+	@Ignore
 	@Test
 	public void testListActiveProductByCategory()
 	{
 		assertEquals(2, productDAO.listActiveProductByCategory(1).size());
 	}
 	
-	
+	@Ignore
 	@Test
 	public void testgetLatestActiveProduct()
 	{

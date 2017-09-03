@@ -41,17 +41,17 @@ public class CategoryTest {
 	{
 		category=new Category();
 		category.setActive(true);
-		category.setDescription("Mobile Description");
-		category.setImageUrl("lap.png");
-		category.setName("Mobile");
-		Product product1=new Product();
+		category.setDescription("HeadPhones Description");
+		//category.setImageUrl("lap.png");
+		category.setName("HeadPhones");
+		/*Product product1=new Product();
 		product1.setActive(true);
 		product1.setBrand("Samsung");
 		//product1.setCategory(category);
 		product1.setDescription("Samsung on8 dual cam mobile");
 		product1.setName("Samsung on8");
 		Set<Product> products=new HashSet<>();
-		products.add(product1);
+		products.add(product1);*/
 		//category.setProducts(products);
 		assertEquals(true, categoryDAO.addCategory(category));
 	}

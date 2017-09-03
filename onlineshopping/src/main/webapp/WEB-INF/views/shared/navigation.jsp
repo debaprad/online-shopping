@@ -17,9 +17,13 @@
             <li class="nav-item" id="listProducts">
               <a class="nav-link" href="${contextPath}/show/all/products">View Products</a>
             </li>
+            <li class="nav-item" id="manageProduct">
+              <a class="nav-link" href="${contextPath}/manage/product">Manage Product</a>
+            </li>
             <li class="nav-item" id="contactus">
               <a class="nav-link" href="${contextPath}/contactus">Contact Us</a>
             </li>
+            
           </ul>
         </div>
       </div>
