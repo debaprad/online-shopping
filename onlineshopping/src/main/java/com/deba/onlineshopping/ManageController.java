@@ -27,7 +27,6 @@ import com.deba.shoppingbackend.dao.ProductDAO;
 @Controller
 @RequestMapping("/manage")
 public class ManageController {
-	
 	@Autowired
 	private CategoryDAO categoryDAO;
 	
