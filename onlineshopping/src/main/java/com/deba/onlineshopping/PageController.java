@@ -76,6 +76,18 @@ public class PageController {
 		mv.addObject("AboutUsPage",true);
 		return mv;
 	}
+	
+	/*flow vs mapping priority check with same url*/
+	@RequestMapping("/register")
+	public ModelAndView register()
+	{
+		ModelAndView mv=new ModelAndView("page");
+		mv.addObject("title","About Us");
+		/*mv.addObject("AboutUsPage",true);*/
+		return mv;
+	}
+	
+	
 	@RequestMapping("/contactus")
 	public ModelAndView contactUs()
 	{

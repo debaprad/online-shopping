@@ -25,6 +25,14 @@
             </li>
             
           </ul>
+          <ul class="NAV navbar-nav navbar-right">
+          <li class="nav-item" id="register">
+              <a class="nav-link" href="${contextPath}/register">Sign Up</a>
+          </li>
+          <li class="nav-item" id="login">
+              <a class="nav-link" href="${contextPath}/login">Login</a>
+          </li>
+          </ul>
         </div>
       </div>
     </nav>

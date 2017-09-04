@@ -153,7 +153,7 @@
        			<div class="form-group">
 					<label class="control-label col-md-4">Name</label>
 					<div class="col-md-8 validate">
-						<sf:input type="text" path="name" class="form-control"
+						<sf:input type="text" path="name" class="form-control" id="catg_name"
 							placeholder="Category Name" /> 
 					</div>
 				</div>
@@ -161,7 +161,7 @@
        			<div class="form-group">				
 					<label class="control-label col-md-4">Description</label>
 					<div class="col-md-8 validate">
-						<sf:textarea path="description" class="form-control"
+						<sf:textarea path="description" class="form-control" id="catg_desc"
 							placeholder="Enter category description here!" /> 
 					</div> 
 				</div>	        	        

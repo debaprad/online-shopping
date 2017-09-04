@@ -43,7 +43,7 @@ public class Product {
 	private String description;
 	@Min(value=1,message="Please Minimum  price")
 	private double unitPrice;
-	@Min(value=1,message="Please Minimum product")
+	//@Min(value=1,message="Please Minimum product")
 	private int quantity;
 	//@JsonIgnore
 	@Column(name = "is_active")

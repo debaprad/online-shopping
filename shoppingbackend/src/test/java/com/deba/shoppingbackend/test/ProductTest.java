@@ -33,11 +33,11 @@ private static AnnotationConfigApplicationContext applicationContext;
 		
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void testAddProduct()
 	{
-		Category category=categoryDAO.getCategory(2);
+		Category category=categoryDAO.getCategory(1);
 		Product product1=new Product();
 		product1.setActive(true);
 		product1.setBrand("SamSung");

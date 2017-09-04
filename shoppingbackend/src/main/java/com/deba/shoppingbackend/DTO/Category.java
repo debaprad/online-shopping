@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -24,7 +27,9 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="CATEGORY_ID")
 	private int id;
+	@NotBlank(message="Category Name Can't be Blank")
 	private String name;
+	@NotBlank(message="Description Can't be Blank")
 	private String description;
 	private String imageUrl;
 	private boolean active=true;

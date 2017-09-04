@@ -34,7 +34,7 @@ public class HibernateConfiguration {
 	private static final String USERNAEM ="tms";
 	private static final String PASSWRD ="tms";
 	private static final String DIALECT ="org.hibernate.dialect.MySQLDialect";
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDatasource()
 	{
 		BasicDataSource basicData = new BasicDataSource();
