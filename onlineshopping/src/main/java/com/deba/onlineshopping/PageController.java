@@ -1,6 +1,13 @@
 package com.deba.onlineshopping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +38,18 @@ public class PageController {
 		return mv;
 	}
 	
+        @RequestMapping(value="/perform-logout",method = RequestMethod.GET)
+        public String logout(HttpServletRequest request,HttpServletResponse
+        		response){
+           Authentication authentication=
+        		   SecurityContextHolder.getContext().getAuthentication();
+           if (authentication != null) {
+			new SecurityContextLogoutHandler().logout(request, response, authentication);
+           }
+           return "redirect:/login?logout";
+        }
+
+	
 	@RequestMapping("/show/all/products")
 	public ModelAndView allProducts()
 	{
@@ -42,12 +61,17 @@ public class PageController {
 	}
 	
 	@RequestMapping(value="/login")
-	public ModelAndView login(@RequestParam(value="error",required=false) String error)
+	public ModelAndView login(@RequestParam(value="error",required=false) String error,
+			@RequestParam(value="logout",required=false) String logout)
 	{
 		ModelAndView mv=new ModelAndView("login");
 		if(error!=null)
 		{
 			mv.addObject("message","Invalid UserName and Password!");
+		}
+		if(logout!=null)
+		{
+			mv.addObject("message","loged out succesfuly");
 		}
 		mv.addObject("title","login");
 		return mv;

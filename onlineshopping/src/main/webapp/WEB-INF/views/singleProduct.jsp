@@ -1,3 +1,6 @@
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+
+
 <div class="container">
 
 	<!-- Breadcrumb -->
@@ -80,9 +83,6 @@
 				<a href="${contextPath}/cart/add/${product.id}/product" class="btn btn-success">
 				<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a>
 				
-				
-				
-						
 				</c:otherwise>
 			
 			</c:choose>

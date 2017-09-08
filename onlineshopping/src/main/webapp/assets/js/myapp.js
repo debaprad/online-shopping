@@ -76,15 +76,35 @@ $(function() {
 				mRender : function(data,type,row)
 				{
 					var s='';
-					/*s += '<a href="'+window.contextRoot+'/show/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
-					*/
+					/*
+					 * s += '<a
+					 * href="'+window.contextRoot+'/show/'+data+'/product"
+					 * class="btn btn-primary"><span class="glyphicon
+					 * glyphicon-eye-open"></span></a> &#160;';
+					 */
 					if(row.quantity < 1)
 						{
+						if(userRole=='ADMIN')
+						{
+						s +='<a href="'+window.contextRoot+'/manage/'+data+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
+						
+						}
+						else{
 						s +='<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart disabled"></span></a>';
+						}
 						}
 					else
 						{
-						s +='<a href="'+window.contextRoot+'/cart/add/'+data+'/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+						if(userRole=='ADMIN')
+							{
+							s +='<a href="'+window.contextRoot+'/manage/'+data+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
+							
+							}
+						else
+							{
+							s +='<a href="'+window.contextRoot+'/cart/add/'+data+'/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+							
+							}
 						}
 					
 					return s;
@@ -239,40 +259,86 @@ var $productsTable = $('#productsTable');
 	
 	
 	
-$categoryForm = $('#categoryForm');
+$registerForm = $('#registerForm');
 	
-	if($categoryForm.length) {
+	if($registerForm.length) {
 		
-		$categoryForm.validate({			
+		$registerForm.validate({			
 				rules: {
-					name: {
-						required: true,
-						minlength: 3
+					firstName: {
+						minlength: 4
 					},
-					description: {
+					email: {
 						required: true,
-						minlength: 3					
-					}				
+						email					
+					},
+					password: {
+						required: true,
+						minlength: 4				
+					}
 				},
 				messages: {					
-					name: {
-						required: 'Please enter product name!',
-						minlength: 'Please enter atleast five characters'
+					firstName: {
+						minlength: 'Please enter atleast four characters'
 					},
-					description: {
-						required: 'Please enter product name!',
-						minlength: 'Please enter atleast five characters'
-					}					
+					email: {
+						email: 'Please enter valid email'
+					},
+					password: {
+						minlength: 'Please enter atleast four characters'
+					}
 				},
 				errorElement : "em",
 				errorPlacement : function(error, element) {
-					errorPlacement(error, element);
-				}				
+					// Add the 'help-block' class to the error element
+					error.addClass("help-block");
+					
+					// add the error label after the input element
+					error.insertAfter(element);
+				}		
 			}
 		
 		);
 		
 	}
+	
+
+	$categoryForm = $('#categoryForm');
+		
+		if($categoryForm.length) {
+			
+			$categoryForm.validate({			
+					rules: {
+						name: {
+							required: true,
+							minlength: 4
+						},
+						description: {
+							required: true					
+						}				
+					},
+					messages: {					
+						name: {
+							required: 'please enter category name',
+							minlength: 'Please enter atleast four characters'
+						},
+						description: {
+							required: 'Please enter description'
+						}					
+					},
+					errorElement : "em",
+					errorPlacement : function(error, element) {
+						// Add the 'help-block' class to the error element
+						error.addClass("help-block");
+						
+						// add the error label after the input element
+						error.insertAfter(element);
+					}		
+				}
+			
+			);
+			
+		}
 	
 	
 	

@@ -57,3 +57,7 @@
 	</div>
 
 </div>
+
+<script>
+	window.userRole='${userModel.role}';
+</script>

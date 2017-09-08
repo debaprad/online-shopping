@@ -155,6 +155,7 @@
 					<div class="col-md-8 validate">
 						<sf:input type="text" path="name" class="form-control" id="catg_name"
 							placeholder="Category Name" /> 
+							<sf:errors path="name" cssClass="help-block" element="em"/> 
 					</div>
 				</div>
        			
@@ -163,6 +164,7 @@
 					<div class="col-md-8 validate">
 						<sf:textarea path="description" class="form-control" id="catg_desc"
 							placeholder="Enter category description here!" /> 
+							<sf:errors path="description" cssClass="help-block" element="em"/> 
 					</div> 
 				</div>	        	        
 	        
